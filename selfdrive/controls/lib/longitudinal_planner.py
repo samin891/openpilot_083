@@ -262,7 +262,7 @@ class Planner():
         self.target_speed_map_block = False
         self.target_speed_map_sign = False
 
-    self.model_speed = self.SC.calc_va(sm, v_ego)
+    self.model_speed = self.SC.cal_model_speed(sm, v_ego)
     #self.model_speed = interp(abs(sm['controlsState'].curvature), [0.0002, 0.01], [255, 30])
     self.curv_speed = interp(abs(self.model_speed), [30, 60, 90, 91], [40, 55, 70, 255])
     self.curv_speed = self.curv_speed*CV.KPH_TO_MS if v_ego > 8 else 255
