@@ -67,7 +67,7 @@ class Controls:
                                      'roadCameraState', 'driverCameraState', 'managerState', 'liveParameters', 'radarState', 'dynamicFollowData', 'liveTracks', 'dynamicFollowButton', 'modelLongButton'], ignore_alive=ignore)
 
     self.op_params = opParams()
-    self.df_manager = dfManager(self.op_params)
+    self.df_manager = dfManager()
     self.hide_auto_df_alerts = self.op_params.get('hide_auto_df_alerts')
     self.last_model_long = False
 
