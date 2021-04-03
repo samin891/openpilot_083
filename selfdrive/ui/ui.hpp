@@ -271,6 +271,7 @@ typedef struct UIState {
   int nOpkrBlindSpotDetect;
   int lat_control;
   int driving_record;
+  int acc_mode;
   int cruise_gap;
 
   bool sidebar_collapsed;
