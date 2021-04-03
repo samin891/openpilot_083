@@ -111,7 +111,7 @@ class LateralPlanner():
     self.desired_curvature_rate = 0.0
     self.safe_desired_curvature_rate = 0.0
 
-  def update(self, sm, CP):
+  def update(self, sm, CP, VM):
     self.use_lanelines = Params().get('EndToEndToggle') != b'1'
     self.laneless_mode = int(Params().get("LanelessMode", encoding='utf8'))
     self.v_cruise_kph = sm['controlsState'].vCruise
