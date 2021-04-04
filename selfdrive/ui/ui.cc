@@ -25,6 +25,13 @@ void sa_init(UIState *s, bool full_init) {
   s->scene.mlButtonEnabled = false;  // state isn't saved yet
 }
 
+static void send_ml(UIState *s, bool enabled) {
+  MessageBuilder msg;
+  auto mlStatus = msg.initEvent().initModelLongButton();
+  mlStatus.setEnabled(enabled);
+  s->pm->send("modelLongButton", msg);
+}
+
 // Projects a point in car to space to the corresponding point in full frame
 // image space.
 static bool calib_frame_to_full_frame(const UIState *s, float in_x, float in_y, float in_z, vertex_data *out) {
@@ -61,7 +68,7 @@ static void ui_init_vision(UIState *s) {
   s->scene.recording = false;
   s->scene.touched = false;
   s->scene.map_on_top = false;
-  s->scene.mlButtonEnabled = false;
+  s->scene.mlbtn_status = false;
 }
 
 
@@ -92,6 +99,8 @@ void ui_init(UIState *s) {
   Params().write_db_value("LimitSetSpeedCamera", "0", 1);
 
   ui_nvg_init(s);
+
+  sa_init(s, true);
 
   s->last_frame = nullptr;
   s->vipc_client_rear = new VisionIpcClient("camerad", VISION_STREAM_RGB_BACK, true);
@@ -457,4 +466,10 @@ void ui_update(UIState *s) {
   update_alert(s);
   update_vision(s);
   dashcam(s);
+  
+  if (s->scene.mlbtn_status != s->scene.mlButtonEnabled) {
+    s->scene.mlbtn_status = s->scene.mlButtonEnabled;
+    send_ml(s, s->scene.mlButtonEnabled);
+    printf("ml button: %d\n", ui_state->scene.mlButtonEnabled);
+  }
 }

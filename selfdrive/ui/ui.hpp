@@ -171,6 +171,7 @@ typedef struct UIScene {
   int laneless_mode;
   int lat_mode;
   float v_cruise_set_point;
+  bool mlbtn_status;
 
   NetStatus athenaStatus;
 
