@@ -31,8 +31,8 @@ class CarInterface(CarInterfaceBase):
 
     ret.carName = "hyundai"
     ret.safetyModel = car.CarParams.SafetyModel.hyundaiLegacy
-    #if candidate in [CAR.SONATA]:
-    #  ret.safetyModel = car.CarParams.SafetyModel.hyundai
+    if candidate in [CAR.SONATA]:
+      ret.safetyModel = car.CarParams.SafetyModel.hyundai
 
 
     params = Params()
