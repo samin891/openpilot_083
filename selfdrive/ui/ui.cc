@@ -470,6 +470,6 @@ void ui_update(UIState *s) {
   if (s->scene.mlbtn_status != s->scene.mlButtonEnabled) {
     s->scene.mlbtn_status = s->scene.mlButtonEnabled;
     send_ml(s, s->scene.mlButtonEnabled);
-    printf("ml button: %d\n", ui_state->scene.mlButtonEnabled);
+    printf("ml button: %d\n", s->scene.mlButtonEnabled);
   }
 }
